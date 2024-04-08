@@ -24,8 +24,4 @@ public class Peca {
     public void setNumero2(int numero2) {
         this.numero2 = numero2;
     }
-
-
-
-
 }

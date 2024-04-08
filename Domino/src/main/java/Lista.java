@@ -1,3 +1,5 @@
+import org.ietf.jgss.Oid;
+
 import java.util.Random;
 
 public class Lista {
@@ -84,8 +86,8 @@ public class Lista {
         No noDaVez = inicio;
         int contador = 1;
         while(noDaVez != null) {
-            System.out.print(contador + " - " + noDaVez.peca.getNumero1() + ":");
-            System.out.println(noDaVez.peca.getNumero2());
+            Output impressao = new Output();
+            impressao.imprimirLista(contador, noDaVez);
             noDaVez = noDaVez.proximo;
             contador++;
         }
@@ -94,8 +96,8 @@ public class Lista {
     public void imprimirMesa() {
         No noDaVez = inicio;
         while(noDaVez != null) {
-            System.out.print(noDaVez.peca.getNumero1() + ":");
-            System.out.print(noDaVez.peca.getNumero2() + " | ");
+            Output impressao = new Output();
+            impressao.imprimirMesa(noDaVez);
             noDaVez = noDaVez.proximo;
         }
         System.out.println();

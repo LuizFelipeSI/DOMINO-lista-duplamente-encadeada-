@@ -16,18 +16,18 @@ public class Partida {
     }
 
     public void fazerJogada() {
-        Scanner scan = new Scanner(System.in);
         boolean pecaValida;
         mesa.imprimirMesa();
         int tamanho = player.getTamanho();
+        Output impressao = new Output();
+        Input input = new Input();
 
         while(true) {
-            System.out.println("escolha sua peça ou passe a vez:");
-            System.out.println("0 - passar a vez");
+            impressao.imprimirOpcoesFazerJogada();
             player.imprimirLista();
-            String opcao = scan.next();
+            String opcao = input.digitarOpcoes();
             if (Pattern.matches("[a-zA-Z]+", opcao)) {
-                System.out.println("Somente números são válidos!");
+                impressao.imprimirSomenteNumeros();
             } else {
                 int numero = Integer.parseInt(opcao);
                 if (numero == 0) {
@@ -36,12 +36,12 @@ public class Partida {
                         jogadaCom();
                         break;
                     } else {
-                        System.out.println("jogo empatou");
+                        impressao.imprimirEmpate();
                         finalizarJogo();
                         break;
                     }
                 } else if (numero > tamanho) {
-                    System.out.println("opção inválida");
+                    impressao.imprimirOpcaoInvalida();
                     mesa.imprimirMesa();
                 } else {
                     Peca p = player.buscarPeca(numero);
@@ -51,10 +51,10 @@ public class Partida {
                         jogadaCom();
                         break;
                     } else if (!com.estaVazia() && !pecaValida) {
-                        System.out.println("peça inválida");
+                        impressao.imprimirPecaInvalida();
                         mesa.imprimirMesa();
                     } else if (player.estaVazia()) {
-                        System.out.println("player ganhou");
+                        impressao.imprimirVitoriaPlayer();
                         finalizarJogo();
                         break;
                     }
@@ -67,6 +67,7 @@ public class Partida {
         int contador = 1;
         No noDaVez = com.getInicio();
         boolean pecaValida = false;
+        Output impressao = new Output();
 
         while (!pecaValida) {
             Peca p = noDaVez.peca;
@@ -83,18 +84,18 @@ public class Partida {
             indicadorDeEmpate = 0;
             fazerJogada();
         } else if (!com.estaVazia() && !pecaValida) {
-            System.out.println("COM passou a vez");
+            impressao.imprimirPassouVez();
             indicadorDeEmpate++;
             if (indicadorDeEmpate < 2) {
                 indicadorDeEmpate = 0;
                 fazerJogada();
             } else {
-                System.out.println("jogo empatou");
+                impressao.imprimirEmpate();
                 finalizarJogo();
             }
         } else if (com.estaVazia()) {
             mesa.imprimirMesa();
-            System.out.println("com ganhou");
+            impressao.imprimirVitoriaCOM();
             finalizarJogo();
         }
     }

@@ -1,17 +1,15 @@
-import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class Menu {
 
-    public void menu() {
-        Scanner scan = new Scanner(System.in);
+    public void imprimirMenu() {
+        Output impressao = new Output();
+        Input input = new Input();
         while (true) {
-            System.out.println("---------------DOMINÓ---------------");
-            System.out.println("1 - iniciar jogo");
-            System.out.println("2 - sair");
-            String opcao = scan.next();
+            impressao.imprimirMenu();
+            String opcao = input.digitarOpcoes();
             if (Pattern.matches("[a-zA-Z]+", opcao)) {
-                System.out.println("Somente números são válidos!");
+                impressao.imprimirSomenteNumeros();
             } else {
                 int numero = Integer.parseInt(opcao);
                 if (numero == 1) {
@@ -21,7 +19,7 @@ public class Menu {
                 } else if (numero == 2){
                     break;
                 } else {
-                    System.out.println("opção inválida");
+                    impressao.imprimirOpcaoInvalida();
                 }
             }
         }
