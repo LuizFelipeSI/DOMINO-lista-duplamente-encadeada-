@@ -1,5 +1,3 @@
-import java.util.regex.Pattern;
-
 public class Menu {
 
     public void imprimirMenu() {
@@ -8,7 +6,14 @@ public class Menu {
         while (true) {
             impressao.imprimirMenu();
             String opcao = input.digitarOpcoes();
-            if (Pattern.matches("[a-zA-Z]+", opcao)) {
+            boolean eNumero = true;
+            for (char c : opcao.toCharArray()) {
+                if (!Character.isDigit(c)) {
+                    eNumero = false;
+                    break;
+                }
+            }
+            if(!eNumero) {
                 impressao.imprimirSomenteNumeros();
             } else {
                 int numero = Integer.parseInt(opcao);

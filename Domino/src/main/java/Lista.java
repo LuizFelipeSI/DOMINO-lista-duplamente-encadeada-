@@ -1,5 +1,3 @@
-import org.ietf.jgss.Oid;
-
 import java.util.Random;
 
 public class Lista {
@@ -56,9 +54,9 @@ public class Lista {
 
     public static void preencherListaPecas(Lista lista) {
         Random random = new Random();
-        while (lista.tamanho < 10) {
-            int ladoA = random.nextInt(4);
-            int ladoB = random.nextInt(4);
+        while (lista.tamanho < 28) {
+            int ladoA = random.nextInt(7);
+            int ladoB = random.nextInt(7);
 
             if (!lista.contemPeca(ladoA, ladoB) && !lista.contemPeca(ladoB, ladoA)) {
                 Peca novaPeca = new Peca(ladoA, ladoB);
@@ -72,7 +70,7 @@ public class Lista {
         Lista novaLista = new Lista();
         int contador = 1;
         while(noDaVez != null) {
-            if(contador < 6) {
+            if(contador < 15) {
                 novaLista.inserir(noDaVez.peca);
                 monte.remover(1);
             }
@@ -144,10 +142,10 @@ public class Lista {
         return null;
     }
 
-    public Peca remover(int posicao) {
+    public void remover(int posicao) {
         int contador = 1;
         if (estaVazia()) {
-            return null;
+            return;
         }
         No noDaVez = inicio;
         No anterior = null;
@@ -160,7 +158,7 @@ public class Lista {
             noDaVez = noDaVez.proximo;
         }
         if (noDaVez == null) {
-            return null;
+            return;
         }
         if (inicio == ultimo) {
             inicio = null;
@@ -177,6 +175,5 @@ public class Lista {
             }
         }
         tamanho--;
-        return noDaVez.peca;
     }
 }

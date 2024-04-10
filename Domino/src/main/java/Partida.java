@@ -1,6 +1,3 @@
-import java.util.Scanner;
-import java.util.regex.Pattern;
-
 public class Partida {
     Lista monte = new Lista();
     Lista player = new Lista();
@@ -10,7 +7,7 @@ public class Partida {
     int indicadorDeEmpate = 0;
 
     public void iniciarPartida() {
-        monte.preencherListaPecas(monte);
+        Lista.preencherListaPecas(monte);
         player = player.distribuirPecas(monte);
         com = com.distribuirPecas(monte);
     }
@@ -26,7 +23,14 @@ public class Partida {
             impressao.imprimirOpcoesFazerJogada();
             player.imprimirLista();
             String opcao = input.digitarOpcoes();
-            if (Pattern.matches("[a-zA-Z]+", opcao)) {
+            boolean eNumero = true;
+            for (char c : opcao.toCharArray()) {
+                if (!Character.isDigit(c)) {
+                    eNumero = false;
+                    break;
+                }
+            }
+            if (!eNumero) {
                 impressao.imprimirSomenteNumeros();
             } else {
                 int numero = Integer.parseInt(opcao);
