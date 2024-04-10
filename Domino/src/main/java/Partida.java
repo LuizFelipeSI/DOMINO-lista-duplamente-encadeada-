@@ -6,6 +6,8 @@ public class Partida {
 
     int indicadorDeEmpate = 0;
 
+    Peca pecaJogadaCom;
+
     public void iniciarPartida() {
         Lista.preencherListaPecas(monte);
         player = player.distribuirPecas(monte);
@@ -13,11 +15,14 @@ public class Partida {
     }
 
     public void fazerJogada() {
-        boolean pecaValida;
-        mesa.imprimirMesa();
-        int tamanho = player.getTamanho();
         Output impressao = new Output();
         Input input = new Input();
+        boolean pecaValida;
+        mesa.imprimirMesa();
+        if (pecaJogadaCom != null) {
+            impressao.imprimirPecaJogadaCom(pecaJogadaCom);
+        }
+        int tamanho = player.getTamanho();
 
         while(true) {
             impressao.imprimirOpcoesFazerJogada();
@@ -107,30 +112,30 @@ public class Partida {
     public boolean verificarPecaCom(Peca p, int opcao) {
         if (mesa.estaVazia()) {
             mesa.inserir(p);
-            com.remover(opcao);
+            pecaJogadaCom = com.remover(opcao);
             return true;
         } else {
             if (mesa.getUltimo().peca.getNumero2() == p.getNumero1()) {
                 mesa.inserir(p);
-                com.remover(opcao);
+                pecaJogadaCom = com.remover(opcao);
                 return true;
             } else if (mesa.getUltimo().peca.getNumero2() == p.getNumero2()) {
                 int aux = p.getNumero1();
                 p.setNumero1(p.getNumero2());
                 p.setNumero2(aux);
                 mesa.inserir(p);
-                com.remover(opcao);
+                pecaJogadaCom = com.remover(opcao);
                 return true;
             } else if (mesa.getInicio().peca.getNumero1() == p.getNumero2()) {
                 mesa.inserirNoComeco(p);
-                com.remover(opcao);
+                pecaJogadaCom = com.remover(opcao);
                 return true;
             } else if (mesa.getInicio().peca.getNumero1() == p.getNumero1()) {
                 int aux = p.getNumero1();
                 p.setNumero1(p.getNumero2());
                 p.setNumero2(aux);
                 mesa.inserirNoComeco(p);
-                com.remover(opcao);
+                pecaJogadaCom = com.remover(opcao);
                 return true;
             } else {
                 return false;

@@ -142,10 +142,10 @@ public class Lista {
         return null;
     }
 
-    public void remover(int posicao) {
+    public Peca remover(int posicao) {
         int contador = 1;
         if (estaVazia()) {
-            return;
+            return null;
         }
         No noDaVez = inicio;
         No anterior = null;
@@ -158,7 +158,7 @@ public class Lista {
             noDaVez = noDaVez.proximo;
         }
         if (noDaVez == null) {
-            return;
+            return null;
         }
         if (inicio == ultimo) {
             inicio = null;
@@ -175,5 +175,6 @@ public class Lista {
             }
         }
         tamanho--;
+        return noDaVez.peca;
     }
 }

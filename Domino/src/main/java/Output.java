@@ -25,6 +25,10 @@ public class Output {
         System.out.println("Somente números são válidos!");
     }
 
+    public void imprimirPecaJogadaCom(Peca peca) {
+        System.out.println("COM jogou: " + peca.getNumero1() + ":" + peca.getNumero2());
+    }
+
     public void imprimirEmpate() {
         System.out.println("O jogo empatou");
     }
