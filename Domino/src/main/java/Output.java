@@ -16,9 +16,10 @@ public class Output {
         System.out.print(noDaVez.peca.getNumero2() + " | ");
     }
 
-    public void imprimirOpcoesFazerJogada() {
+    public void imprimirOpcoesFazerJogada(Lista monte) {
         System.out.println("Escolha sua peça ou passe a vez:");
         System.out.println("0 - passar a vez");
+        System.out.println("100 - pegar peça do monte (peças disponíveis - " + monte.getTamanho() + ")");
     }
 
     public void imprimirSomenteNumeros() {
@@ -26,7 +27,7 @@ public class Output {
     }
 
     public void imprimirPecaJogadaCom(Peca peca) {
-        System.out.println("COM jogou: " + peca.getNumero1() + ":" + peca.getNumero2());
+        System.out.println("Última peça que COM jogou: " + peca.getNumero1() + ":" + peca.getNumero2());
     }
 
     public void imprimirEmpate() {
@@ -39,6 +40,10 @@ public class Output {
 
     public void imprimirPecaInvalida() {
         System.out.println("Peça inválida");
+    }
+
+    public void imprimirNaoHaPecaMonte(Lista monte) {
+        System.out.println("Não há peça no monte (peças disponíveis - " + monte.getTamanho() + ")");
     }
 
     public void imprimirVitoriaPlayer() {

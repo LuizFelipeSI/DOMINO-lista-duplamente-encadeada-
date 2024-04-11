@@ -70,7 +70,7 @@ public class Lista {
         Lista novaLista = new Lista();
         int contador = 1;
         while(noDaVez != null) {
-            if(contador < 15) {
+            if(contador < 8) {
                 novaLista.inserir(noDaVez.peca);
                 monte.remover(1);
             }
@@ -176,5 +176,16 @@ public class Lista {
         }
         tamanho--;
         return noDaVez.peca;
+    }
+
+    public void pegarDoMonte(Lista monte, Lista listaDaVez) {
+        No noDaVez = monte.inicio;
+        Output impressao = new Output();
+        if (noDaVez != null) {
+            listaDaVez.inserir(noDaVez.peca);
+            monte.remover(1);
+        } else {
+            impressao.imprimirNaoHaPecaMonte(monte);
+        }
     }
 }

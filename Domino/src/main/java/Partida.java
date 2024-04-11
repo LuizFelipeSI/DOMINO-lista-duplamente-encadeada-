@@ -22,10 +22,8 @@ public class Partida {
         if (pecaJogadaCom != null) {
             impressao.imprimirPecaJogadaCom(pecaJogadaCom);
         }
-        int tamanho = player.getTamanho();
-
         while(true) {
-            impressao.imprimirOpcoesFazerJogada();
+            impressao.imprimirOpcoesFazerJogada(monte);
             player.imprimirLista();
             String opcao = input.digitarOpcoes();
             boolean eNumero = true;
@@ -49,7 +47,10 @@ public class Partida {
                         finalizarJogo();
                         break;
                     }
-                } else if (numero > tamanho) {
+                } else if(numero == 100) {
+                    player.pegarDoMonte(monte, player);
+                    mesa.imprimirMesa();
+                } else if (numero > player.getTamanho()) {
                     impressao.imprimirOpcaoInvalida();
                     mesa.imprimirMesa();
                 } else {
@@ -93,14 +94,28 @@ public class Partida {
             indicadorDeEmpate = 0;
             fazerJogada();
         } else if (!com.estaVazia() && !pecaValida) {
-            impressao.imprimirPassouVez();
-            indicadorDeEmpate++;
-            if (indicadorDeEmpate < 2) {
-                indicadorDeEmpate = 0;
-                fazerJogada();
-            } else {
-                impressao.imprimirEmpate();
-                finalizarJogo();
+            while (true) {
+                if (monte.estaVazia()) {
+                    impressao.imprimirNaoHaPecaMonte(monte);
+                    impressao.imprimirPassouVez();
+                    indicadorDeEmpate++;
+                    if (indicadorDeEmpate < 2) {
+                        fazerJogada();
+                        break;
+                    } else {
+                        impressao.imprimirEmpate();
+                        finalizarJogo();
+                        break;
+                    }
+                } else {
+                    com.pegarDoMonte(monte, com);
+                    pecaValida = verificarPecaCom(com.getUltimo().peca, com.getTamanho());
+                }
+                if (pecaValida) {
+                    indicadorDeEmpate = 0;
+                    fazerJogada();
+                    break;
+                }
             }
         } else if (com.estaVazia()) {
             mesa.imprimirMesa();
