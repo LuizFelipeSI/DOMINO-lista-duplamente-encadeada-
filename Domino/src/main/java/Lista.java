@@ -93,12 +93,12 @@ public class Lista {
 
     public void imprimirMesa() {
         No noDaVez = inicio;
+        Output impressao = new Output();
         while(noDaVez != null) {
-            Output impressao = new Output();
             impressao.imprimirMesa(noDaVez);
             noDaVez = noDaVez.proximo;
         }
-        System.out.println();
+        impressao.pularLinha();
     }
 
     public void inserir(Peca peca) {

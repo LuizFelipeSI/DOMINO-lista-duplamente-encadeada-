@@ -57,4 +57,8 @@ public class Output {
     public void imprimirVitoriaCOM() {
         System.out.println("COM ganhou");
     }
+
+    public void pularLinha() {
+        System.out.println();
+    }
 }
