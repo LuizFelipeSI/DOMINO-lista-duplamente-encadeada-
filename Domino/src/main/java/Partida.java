@@ -38,14 +38,18 @@ public class Partida {
             } else {
                 int numero = Integer.parseInt(opcao);
                 if (numero == 0) {
-                    indicadorDeEmpate++;
-                    if (indicadorDeEmpate < 2) {
-                        jogadaCom();
-                        break;
+                    if (monte.estaVazia()) {
+                        indicadorDeEmpate++;
+                        if (indicadorDeEmpate < 2) {
+                            jogadaCom();
+                            break;
+                        } else {
+                            impressao.imprimirEmpate();
+                            finalizarJogo();
+                            break;
+                        }
                     } else {
-                        impressao.imprimirEmpate();
-                        finalizarJogo();
-                        break;
+                        impressao.imprimirHaPecaMonte();
                     }
                 } else if(numero == 100) {
                     player.pegarDoMonte(monte, player);

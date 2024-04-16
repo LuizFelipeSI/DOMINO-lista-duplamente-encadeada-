@@ -17,7 +17,7 @@ public class Output {
     }
 
     public void imprimirOpcoesFazerJogada(Lista monte) {
-        System.out.println("Escolha sua peça ou passe a vez:");
+        System.out.println("Faça sua jogada:");
         System.out.println("0 - passar a vez");
         System.out.println("100 - pegar peça do monte (peças disponíveis - " + monte.getTamanho() + ")");
     }
@@ -56,6 +56,10 @@ public class Output {
 
     public void imprimirVitoriaCOM() {
         System.out.println("COM ganhou");
+    }
+
+    public void imprimirHaPecaMonte() {
+        System.out.println("Ainda há peças no monte, não é possível passar a vez");
     }
 
     public void pularLinha() {
